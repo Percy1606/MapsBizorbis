@@ -465,7 +465,7 @@ export default function BuscadorPage() {
                       fetchSuggestions(location, newCountry);
                     }
                   }}
-                  className="w-full pl-9 pr-8 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-semibold text-slate-800 cursor-pointer appearance-none"
+                  className="w-full pl-9 pr-8 py-2 text-base sm:text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-semibold text-slate-800 cursor-pointer appearance-none"
                 >
                   {COUNTRIES.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -505,7 +505,7 @@ export default function BuscadorPage() {
                       ? "Ej: Sechura, Miraflores, Piura..."
                       : "Ej: Nombre de la ciudad..."
                   }
-                  className="w-full pl-9 pr-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-medium"
+                  className="w-full pl-9 pr-3 py-2 text-base sm:text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-medium"
                   autoComplete="off"
                   required
                 />
@@ -562,7 +562,7 @@ export default function BuscadorPage() {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   placeholder="Ej: Todos los rubros, ferreterías..."
-                  className="w-full pl-9 pr-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-medium"
+                  className="w-full pl-9 pr-3 py-2 text-base sm:text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-slate-50 font-medium"
                 />
               </div>
             </div>

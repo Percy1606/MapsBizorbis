@@ -75,7 +75,7 @@ function LoginForm() {
       <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/20 via-indigo-600/15 to-teal-500/20 rounded-[32px] blur-xl opacity-70 group-hover:opacity-100 transition-opacity" />
 
       {/* Main Glass Card */}
-      <div className="relative bg-white/95 backdrop-blur-2xl border border-slate-200/90 rounded-3xl p-7 sm:p-9 shadow-2xl shadow-blue-900/10 space-y-6">
+      <div className="relative bg-white/95 backdrop-blur-2xl border border-slate-200/90 rounded-3xl p-6 sm:p-9 shadow-2xl shadow-blue-900/10 space-y-6">
         {/* Header with animated Radar halo */}
         <div className="text-center space-y-3">
           <div className="relative inline-flex items-center justify-center">
@@ -128,7 +128,7 @@ function LoginForm() {
                 placeholder="Ingresa tu usuario"
                 required
                 autoFocus
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 hover:bg-slate-100/60 focus:bg-white border border-slate-300 focus:border-blue-600 rounded-xl text-slate-900 text-xs placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 transition-all font-semibold"
+                className="w-full pl-10 pr-4 py-3 sm:py-2.5 bg-slate-50 hover:bg-slate-100/60 focus:bg-white border border-slate-300 focus:border-blue-600 rounded-xl text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 transition-all font-semibold"
               />
             </div>
           </div>
@@ -157,7 +157,7 @@ function LoginForm() {
                 onKeyUp={handleKeyDown}
                 placeholder="••••••••"
                 required
-                className="w-full pl-10 pr-10 py-2.5 bg-slate-50 hover:bg-slate-100/60 focus:bg-white border border-slate-300 focus:border-blue-600 rounded-xl text-slate-900 text-xs placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 transition-all font-semibold"
+                className="w-full pl-10 pr-10 py-3 sm:py-2.5 bg-slate-50 hover:bg-slate-100/60 focus:bg-white border border-slate-300 focus:border-blue-600 rounded-xl text-slate-900 text-base sm:text-xs placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 transition-all font-semibold"
               />
               <button
                 type="button"

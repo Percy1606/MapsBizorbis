@@ -1,0 +1,136 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Business {
+  id                  String         @id @default(cuid())
+  placeId             String?        @unique
+  name                String
+  category            String
+  address             String?        @db.Text
+  city                String?
+  country             String?
+  latitude            Float
+  longitude           Float
+  phone               String?
+  phoneNormalized     String?
+  email               String?        @db.VarChar(255)
+  website             String?        @db.VarChar(500)
+  rating              Float?
+  userRatingsTotal    Int?
+  googleMapsUrl       String?        @db.VarChar(500)
+  source              String         @default("google_places")
+  isVerified          Boolean        @default(false)
+  crmStatus           String         @default("NUEVO")
+  priority            String         @default("MEDIA")
+  commercialScore     Int            @default(0)
+  scoreConfidence     Int            @default(0)
+  scoreBreakdown      String?        @db.Text
+  recommendedServices String?        @db.Text
+  doNotContact        Boolean        @default(false)
+  notes               String?        @db.Text
+  instagram           String?        @db.VarChar(500)
+  facebook            String?        @db.VarChar(500)
+  tiktok              String?        @db.VarChar(500)
+  openingHours        String?        @db.Text
+  assignedTo          String?        @default("Sin asignar")
+  nextFollowUp        DateTime?
+  lastContactAt       DateTime?
+  opportunityLevel    String?        @default("MEDIA")
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
+  audits              WebsiteAudit[]
+  aiAnalyses          AIAnalysis[]
+  contactLogs         ContactLog[]
+
+  @@index([city])
+  @@index([category])
+  @@index([crmStatus])
+  @@index([commercialScore])
+  @@index([nextFollowUp])
+}
+
+model AppSettings {
+  id              String   @id @default("default")
+  companyName     String   @default("Mi Agencia Tech")
+  companyServices String?  @db.Text
+  commercialSign  String?  @db.Text
+  priceWeb        String   @default("Desde S/499")
+  priceWhatsApp   String   @default("Desde S/299")
+  priceCustom     String   @default("Desde S/899")
+  updatedAt       DateTime @updatedAt
+}
+
+model WebsiteAudit {
+  id                 String    @id @default(cuid())
+  businessId         String
+  business           Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  url                String    @db.VarChar(500)
+  httpStatus         Int?
+  hasHttps           Boolean   @default(false)
+  performanceScore   Int?
+  mobileScore        Int?
+  desktopScore       Int?
+  fcp                Float?
+  lcp                Float?
+  cls                Float?
+  isResponsive       Boolean   @default(true)
+  hasWhatsAppButton  Boolean   @default(false)
+  hasContactForm     Boolean   @default(false)
+  hasBookingSystem   Boolean   @default(false)
+  detectedTech       String?   @db.Text
+  opportunities      String?   @db.Text
+  rawDetails         String?   @db.Text
+  createdAt          DateTime  @default(now())
+
+  @@index([businessId])
+}
+
+model AIAnalysis {
+  id                  String    @id @default(cuid())
+  businessId          String
+  business            Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  summary             String    @db.Text
+  digitalStrengths    String    @db.Text
+  digitalWeaknesses   String    @db.Text
+  negativeFactors     String?   @db.Text
+  recommendedServices String    @db.Text
+  pitchProfessional   String    @db.Text
+  pitchFriendly       String    @db.Text
+  pitchDirect         String    @db.Text
+  phoneScript         String?   @db.Text
+  confidenceLevel     String    @default("MEDIA")
+  createdAt           DateTime  @default(now())
+
+  @@index([businessId])
+}
+
+model ContactLog {
+  id                String    @id @default(cuid())
+  businessId        String
+  business          Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  channel           String
+  tone              String?
+  messageContent    String?   @db.Text
+  outcome           String?
+  scheduledFollowUp DateTime?
+  createdAt         DateTime  @default(now())
+
+  @@index([businessId])
+}
+
+model SearchHistory {
+  id            String   @id @default(cuid())
+  queryLocation String
+  queryCategory String
+  radiusKm      Float?
+  resultsCount  Int      @default(0)
+  source        String   @default("google_places")
+  createdAt     DateTime @default(now())
+}
